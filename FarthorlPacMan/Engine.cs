@@ -35,13 +35,22 @@ namespace FarthorlPacMan
             threadRendering.Abort();
         }
 
+        //Heare is the logic for gaming
         private void render()
         {
             graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, 1200, 800);
             drawPaths();
             while (true)
             {
-                
+                Random random=new Random();
+                int number = random.Next(points.Count);
+                points[number].pointStatus = 0;
+
+                //Redraw the points
+                foreach (var point in points)
+                {
+                    point.drawPoint(graphics);
+                }
 
             }
         }
@@ -126,7 +135,6 @@ namespace FarthorlPacMan
                     {
                         Point point = new Point((x*50) + 25, (y*50) + 25);
                         points.Add(point);
-                        point.drawPoint(graphics);
                     }
                     else
                     {

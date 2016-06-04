@@ -10,11 +10,12 @@ namespace FarthorlPacMan
 {
     class Point
     {
-        public int centerX;
-        public int centerY;
+        private int centerX;
+        private int centerY;
         private Color pointColor=Color.Blue;
         private Color pointFillColor=Color.BlueViolet;
         private const int pointDiameter = 10;
+        public int pointStatus = 1;
         public Point(int centerX, int centerY)
         {
             this.centerX = centerX;
@@ -23,8 +24,21 @@ namespace FarthorlPacMan
 
         public void drawPoint(Graphics graphics)
         {
-            graphics.DrawEllipse(new Pen(pointColor), (centerX) , (centerY) , pointDiameter, pointDiameter);
-            graphics.FillEllipse(new SolidBrush(pointFillColor), (centerX+1), (centerY+1), pointDiameter - 1, pointDiameter - 1);
+            if (pointStatus == 1) //Draw the point if is not collected
+            {
+                graphics.DrawEllipse(new Pen(pointColor), (centerX - pointDiameter/2), (centerY - pointDiameter/2),
+                    pointDiameter, pointDiameter);
+                graphics.FillEllipse(new SolidBrush(pointFillColor), (centerX - (pointDiameter/2) + 1),
+                    (centerY - (pointDiameter/2) + 1), pointDiameter - 1, pointDiameter - 1);
+            }
+            else //Remove the point from the screen if the point is collected
+            {
+                graphics.FillEllipse(new SolidBrush(Color.Black), (centerX - (pointDiameter / 2)-1),
+                    (centerY - (pointDiameter / 2)-1), pointDiameter+2, pointDiameter+2);
+            }
+
+
+
         }
 
     }
