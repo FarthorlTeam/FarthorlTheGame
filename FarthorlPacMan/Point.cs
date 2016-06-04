@@ -15,7 +15,7 @@ namespace FarthorlPacMan
         private Color pointColor=Color.Blue;
         private Color pointFillColor=Color.BlueViolet;
         private const int pointDiameter = 10;
-        public int pointStatus = 1;
+        private int pointStatus = 1;
         public Point(int centerX, int centerY)
         {
             this.centerX = centerX;
@@ -36,9 +36,11 @@ namespace FarthorlPacMan
                 graphics.FillEllipse(new SolidBrush(Color.Black), (centerX - (pointDiameter / 2)-1),
                     (centerY - (pointDiameter / 2)-1), pointDiameter+2, pointDiameter+2);
             }
+        }
 
-
-
+        public void eatPoint()
+        {
+            this.pointStatus = 0;
         }
 
     }

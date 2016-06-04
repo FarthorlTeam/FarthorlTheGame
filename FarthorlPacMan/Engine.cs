@@ -38,13 +38,14 @@ namespace FarthorlPacMan
         //Heare is the logic for gaming
         private void render()
         {
-            graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, 1200, 800);
+            drawFont();
             drawPaths();
+
             while (true)
             {
                 Random random=new Random();
                 int number = random.Next(points.Count);
-                points[number].pointStatus = 0;
+                points[number].eatPoint();
 
                 //Redraw the points
                 foreach (var point in points)
@@ -144,6 +145,11 @@ namespace FarthorlPacMan
                 }
             }
 
+        }
+
+        private void drawFont()
+        {
+            graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, 1200, 800);
         }
     }
 }
