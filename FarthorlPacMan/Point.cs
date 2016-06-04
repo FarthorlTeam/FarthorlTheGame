@@ -13,7 +13,8 @@ namespace FarthorlPacMan
         public int centerX;
         public int centerY;
         private Color pointColor=Color.Blue;
-        private const int pointRadius = 10;
+        private Color pointFillColor=Color.BlueViolet;
+        private const int pointDiameter = 10;
         public Point(int centerX, int centerY)
         {
             this.centerX = centerX;
@@ -22,7 +23,8 @@ namespace FarthorlPacMan
 
         public void drawPoint(Graphics graphics)
         {
-            graphics.DrawEllipse(new Pen(pointColor), ((centerX * 50) + 25) - pointRadius, ((centerY * 50) + 25) - pointRadius, ((centerX * 50) + 25) + pointRadius, ((centerY * 50) + 25) + pointRadius);
+            graphics.DrawEllipse(new Pen(pointColor), (centerX) , (centerY) , pointDiameter, pointDiameter);
+            graphics.FillEllipse(new SolidBrush(pointFillColor), (centerX+1), (centerY+1), pointDiameter - 1, pointDiameter - 1);
         }
 
     }

@@ -42,7 +42,7 @@ namespace FarthorlPacMan
             while (true)
             {
                 
-                //graphics.FillRectangle(new SolidBrush(Color.Black), 0,0 , 1200,800 );
+
             }
         }
 

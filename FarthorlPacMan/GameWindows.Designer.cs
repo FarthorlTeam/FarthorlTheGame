@@ -46,12 +46,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1201, 778);
+            this.ClientSize = new System.Drawing.Size(1201, 861);
             this.Controls.Add(this.pacMan);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1217, 817);
-            this.MinimumSize = new System.Drawing.Size(1217, 817);
+            this.MaximumSize = new System.Drawing.Size(1217, 900);
+            this.MinimumSize = new System.Drawing.Size(1217, 900);
             this.Name = "GameWindows";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Farthorl PacMan Game";
