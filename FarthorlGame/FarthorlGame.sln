@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FarthorlGame", "FarthorlGame.csproj", "{90DA51E1-BEEC-441D-BF09-3D2995DD01A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GEngine", "GEngine\GEngine.csproj", "{8F58C405-F243-434E-8958-74151F7AD6A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartupGame", "StartupGame\StartupGame.csproj", "{5696C63B-3F0C-4366-B762-7FFE05F151F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{90DA51E1-BEEC-441D-BF09-3D2995DD01A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90DA51E1-BEEC-441D-BF09-3D2995DD01A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90DA51E1-BEEC-441D-BF09-3D2995DD01A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F58C405-F243-434E-8958-74151F7AD6A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F58C405-F243-434E-8958-74151F7AD6A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F58C405-F243-434E-8958-74151F7AD6A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F58C405-F243-434E-8958-74151F7AD6A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5696C63B-3F0C-4366-B762-7FFE05F151F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5696C63B-3F0C-4366-B762-7FFE05F151F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5696C63B-3F0C-4366-B762-7FFE05F151F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5696C63B-3F0C-4366-B762-7FFE05F151F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
