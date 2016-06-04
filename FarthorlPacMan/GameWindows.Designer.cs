@@ -1,6 +1,6 @@
 ﻿namespace FarthorlPacMan
 {
-    partial class StartupForm
+    partial class GameWindows
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,7 @@
             this.pacMan.Size = new System.Drawing.Size(1200, 800);
             this.pacMan.TabIndex = 0;
             // 
-            // StartupForm
+            // GameWindows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -51,7 +51,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1300, 900);
             this.MinimumSize = new System.Drawing.Size(1300, 900);
-            this.Name = "StartupForm";
+            this.Name = "GameWindows";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Farthorl PacMan Game";
             this.ResumeLayout(false);

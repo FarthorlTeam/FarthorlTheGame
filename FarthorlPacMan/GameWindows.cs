@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace FarthorlPacMan
 {
-    public partial class StartupForm : Form
+    public partial class GameWindows : Form
     {
-        public StartupForm()
+        public GameWindows()
         {
             InitializeComponent();
         }
+
     }
 }
