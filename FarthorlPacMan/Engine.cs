@@ -16,8 +16,21 @@ namespace FarthorlPacMan
 
         public void initialize()
         {
-            threadRendering=new Thread(ThreadStart(render));
+            threadRendering=new Thread(new ThreadStart(render));
             threadRendering.Start();
+        }
+
+        public void stopGame()
+        {
+            threadRendering.Abort();
+        }
+
+        private void render()
+        {
+            while (true)
+            {
+                graphics.FillRectangle(new SolidBrush(Color.Black), 0,0 , 1200,800 );
+            }
         }
     }
 }
