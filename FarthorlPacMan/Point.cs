@@ -1,4 +1,6 @@
-﻿namespace FarthorlPacMan
+﻿using System;
+
+namespace FarthorlPacMan
 {
     using System.Drawing;
     class Point
@@ -8,7 +10,7 @@
         private Color pointColor=Color.Blue;
         private Color pointFillColor=Color.BlueViolet;
         private const int pointDiameter = 10;
-        private int pointStatus = 1;
+        private Boolean isCollected = false;
         public Point(int centerX, int centerY)
         {
             this.centerX = centerX;
@@ -17,23 +19,23 @@
 
         public void drawPoint(Graphics graphics)
         {
-            if (pointStatus == 1) //Draw the point if is not collected
+            if (isCollected)//Remove the point from the screen if the point is collected
             {
-                graphics.DrawEllipse(new Pen(pointColor), (centerX - pointDiameter/2), (centerY - pointDiameter/2),
-                    pointDiameter, pointDiameter);
-                graphics.FillEllipse(new SolidBrush(pointFillColor), (centerX - (pointDiameter/2) + 1),
-                    (centerY - (pointDiameter/2) + 1), pointDiameter - 1, pointDiameter - 1);
+                graphics.FillEllipse(new SolidBrush(Color.Black), (centerX - (pointDiameter/2) - 1),
+                    (centerY - (pointDiameter/2) - 1), pointDiameter + 2, pointDiameter + 2);
             }
-            else //Remove the point from the screen if the point is collected
+            else // Draw the point if is not collected
             {
-                graphics.FillEllipse(new SolidBrush(Color.Black), (centerX - (pointDiameter / 2)-1),
-                    (centerY - (pointDiameter / 2)-1), pointDiameter+2, pointDiameter+2);
+                graphics.DrawEllipse(new Pen(pointColor), (centerX - pointDiameter / 2), (centerY - pointDiameter / 2),
+                    pointDiameter, pointDiameter);
+                graphics.FillEllipse(new SolidBrush(pointFillColor), (centerX - (pointDiameter / 2) + 1),
+                    (centerY - (pointDiameter / 2) + 1), pointDiameter - 1, pointDiameter - 1);
             }
         }
 
         public void eatPoint()
         {
-            this.pointStatus = 0;
+            this.isCollected = true;
         }
 
     }
