@@ -15,5 +15,10 @@
         {
             this.graphicEngine.stopGame();
         }
+
+        public void Direction(string direction)
+        {
+            graphicEngine.changeDirection(direction);
+        }
     }
 }

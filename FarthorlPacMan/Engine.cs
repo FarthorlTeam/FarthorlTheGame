@@ -15,7 +15,7 @@ namespace FarthorlPacMan
         private string[,] pathsMatrix=new string[24,16];
         private int xMax = 24;
         private int yMax = 16;
-        private string moveDirection = "Right";
+        private string moveDirection;
         private Color wallColor=Color.Cyan;
         List<Point> points=new List<Point>();
         public Engine(Graphics graphic)
@@ -181,6 +181,11 @@ namespace FarthorlPacMan
                     break;
                 }
             }
+        }
+
+        public void changeDirection(string changeDirection)
+        {
+            moveDirection = changeDirection;
         }
 
     }

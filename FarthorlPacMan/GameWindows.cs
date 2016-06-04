@@ -23,7 +23,22 @@
 
         private void GameWindows_KeyPress(object sender, KeyPressEventArgs e)
         {
-            MessageBox.Show(e.ToString());
+        
+        }
+
+        private void GameWindows_KeyDown(object sender, KeyEventArgs e)
+        {
+            MessageBox.Show(e.KeyValue.ToString());
+            if (e.KeyValue==39)
+            {
+                game.Direction("Right");
+            }
+
+            if (e.KeyValue==37)
+            {
+                game.Direction("Left");
+            }
+            
         }
     }
 }
