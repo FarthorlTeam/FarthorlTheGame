@@ -10,7 +10,7 @@ namespace FarthorlPacMan
     {
         private Graphics graphics;
         private Thread threadRendering;
-        private string[,] matrix;
+        private string[,] matrix=new string[24,16];
         public Engine(Graphics graphic)
         {
             this.graphics = graphic;
@@ -41,15 +41,20 @@ namespace FarthorlPacMan
         {
             try
             {
-                using (var fileMatrix = new StreamReader("DataFile/coordinates.txt"))
+                using (var fileMatrix = new StreamReader("DataFiles/coordinates.txt"))
                 {
                     string inputLine;
                     while ((inputLine=fileMatrix.ReadLine())!=null)
                     {
-                        var splitLine = inputLine.Trim().Split('='); // Get valies from the coordinates.txt example splitLine[0]=1,0 splitLine[1]=1|0|0|1|1
-                        var arrayXYValues = splitLine[0].Trim().Split(','); //Get value of 2D array example arrayXYValues[0]=1 arrayXYValues[0]=0
+                        // Get values from the coordinates.txt example splitLine[0]=1,0 splitLine[1]=1|0|0|1|1
+                        var splitLine = inputLine.Trim().Split('=');
+
+                        //Get the position values for the 2D array example arrayXYValues[0]=1 arrayXYValues[0]=0 
+                        var arrayXYValues = splitLine[0].Trim().Split(','); 
                         int arrayX;
                         int arrayY;
+
+                        //This is the values of the array cell
                         string arrayValue = splitLine[1];
                         try
                         {
@@ -62,15 +67,14 @@ namespace FarthorlPacMan
 
                         }
 
+                        //Add element data in to the specific point in the 2D array
                         this.matrix[arrayX, arrayY] = arrayValue;
-
                     }
                 }
             }
             catch (Exception)
-            {
-                
-                throw;
+            {   
+                throw new FileLoadException();
             }
 
 
