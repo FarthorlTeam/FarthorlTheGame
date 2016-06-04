@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FarthorlPacMan
+﻿namespace FarthorlPacMan
 {
+    using System.Drawing;
+    using System.Windows.Forms;
     public partial class GameWindows : Form
     {
         private Game game=new Game();

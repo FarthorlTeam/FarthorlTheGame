@@ -1,7 +1,7 @@
-﻿using System.Drawing;
-
-namespace FarthorlPacMan
+﻿namespace FarthorlPacMan
 {
+    using System.Drawing;
+
     class Game
     {
         private Engine graphicEngine;

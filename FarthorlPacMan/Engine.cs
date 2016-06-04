@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading;
-using System.Xml.Schema;
-
-namespace FarthorlPacMan
+﻿namespace FarthorlPacMan
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Threading;
+
     using System.Drawing;
 
     class Engine

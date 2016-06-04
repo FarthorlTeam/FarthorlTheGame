@@ -1,9 +1,7 @@
-﻿using System.Runtime.CompilerServices;
-using System.Windows.Forms;
-using System.Drawing;
-
-namespace FarthorlGame
+﻿namespace FarthorlGame
 {
+    using System.Windows.Forms;
+
     public class Startup
     {
         public void Main(object sender, PaintEventArgs e)

@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FarthorlPacMan
+﻿namespace FarthorlPacMan
 {
+    using System.Drawing;
     class Point
     {
         private int centerX;

@@ -54,6 +54,7 @@
     <Compile Include="GameWindows.Designer.cs">
       <DependentUpon>GameWindows.cs</DependentUpon>
     </Compile>
+    <Compile Include="PacMan.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
