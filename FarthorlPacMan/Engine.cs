@@ -15,6 +15,7 @@ namespace FarthorlPacMan
         private string[,] pathsMatrix=new string[24,16];
         private int xMax = 24;
         private int yMax = 16;
+        private string moveDirection = "Right";
         private Color wallColor=Color.Cyan;
         List<Point> points=new List<Point>();
         public Engine(Graphics graphic)
@@ -43,15 +44,14 @@ namespace FarthorlPacMan
 
             while (true)
             {
-                Random random=new Random();
-                int number = random.Next(points.Count);
-                points[number].eatPoint();
-
                 //Redraw the points
                 foreach (var point in points)
                 {
                     point.drawPoint(graphics);
                 }
+
+                System.Threading.Thread.Sleep(100);
+                pacMan.move(this.graphics,this, moveDirection);
 
             }
         }
