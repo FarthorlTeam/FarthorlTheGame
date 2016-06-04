@@ -20,5 +20,10 @@
         {
             this.game.stopGame();
         }
+
+        private void GameWindows_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MessageBox.Show(e.ToString());
+        }
     }
 }

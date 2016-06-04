@@ -1,19 +1,20 @@
-﻿namespace FarthorlPacMan
+﻿using System.Windows.Forms;
+
+namespace FarthorlPacMan
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Threading;
-
     using System.Drawing;
 
-    class Engine
+    public class Engine
     {
         private Graphics graphics;
         private Thread threadRendering;
         private string[,] pathsMatrix=new string[24,16];
-        private const int xMax = 24;
-        private const int yMax = 16;
+        private int xMax = 24;
+        private int yMax = 16;
         private Color wallColor=Color.Cyan;
         List<Point> points=new List<Point>();
         public Engine(Graphics graphic)
@@ -38,6 +39,7 @@
         {
             drawFont();
             drawPaths();
+            PacMan pacMan=new PacMan(0,0,this.graphics,this);
 
             while (true)
             {
@@ -149,5 +151,37 @@
         {
             graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, 1200, 800);
         }
+
+        public int GetMaxX()
+        {
+            return this.xMax;
+        }
+
+        public int GetMaxY()
+        {
+            return this.yMax;
+        }
+
+        public string[] getQuadrantElements(int quadrantX, int quandrantY)
+        {
+            string[] elements = pathsMatrix[quadrantX, quandrantY].Trim().Split('|');
+            return elements;
+        }
+
+        public void updateMatrihElements(int quadrantX, int quandrantY, string[] element)
+        {
+            var stringValue =$"{element[0]}|{element[1]}|{element[2]}|{element[3]}|{element[4]}";
+            pathsMatrix[quadrantX, quandrantY] = stringValue;
+
+            foreach (var point in points)
+            {
+                if (point.getX()==(quadrantX*50)+25 && point.getY()==(quandrantY*50)+25)
+                {
+                    point.eatPoint();
+                    break;
+                }
+            }
+        }
+
     }
 }

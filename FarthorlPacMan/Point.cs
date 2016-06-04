@@ -38,5 +38,15 @@ namespace FarthorlPacMan
             this.isCollected = true;
         }
 
+        public int getX()
+        {
+            return this.centerX;
+        }
+
+        public int getY()
+        {
+            return this.centerY;
+        }
+
     }
 }
