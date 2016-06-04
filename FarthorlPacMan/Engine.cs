@@ -11,12 +11,11 @@
     {
         private Graphics graphics;
         private Thread threadRendering;
-        private string[,] matrix=new string[24,16];
+        private string[,] pathsMatrix=new string[24,16];
         private const int xMax = 24;
         private const int yMax = 16;
-        private const int pointRadius = 10;
         private Color wallColor=Color.Cyan;
-        List<Point> points=new List<Point>(); 
+        List<Point> points=new List<Point>();
         public Engine(Graphics graphic)
         {
             this.graphics = graphic;
@@ -86,7 +85,7 @@
                         }
 
                         //Add element data in to the specific point in the 2D array
-                        this.matrix[arrayX, arrayY] = arrayValue;
+                        this.pathsMatrix[arrayX, arrayY] = arrayValue;
                     }
                 }
             }
@@ -104,7 +103,7 @@
             {
                 for (int x = 0; x < xMax; x++)
                 {
-                    var elements = matrix[x,y].Trim().Split('|');
+                    var elements = pathsMatrix[x,y].Trim().Split('|');
                     int topIndex = int.Parse(elements[0]);
                     int rightIndex = int.Parse(elements[1]);
                     int bottomIndex = int.Parse(elements[2]);
