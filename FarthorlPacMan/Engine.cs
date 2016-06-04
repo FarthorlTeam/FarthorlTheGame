@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Xml.Schema;
 
 namespace FarthorlPacMan
 {
@@ -11,6 +13,11 @@ namespace FarthorlPacMan
         private Graphics graphics;
         private Thread threadRendering;
         private string[,] matrix=new string[24,16];
+        private const int xMax = 24;
+        private const int yMax = 16;
+        private const int pointRadius = 10;
+        private Color wallColor=Color.Cyan;
+        List<Point> points=new List<Point>(); 
         public Engine(Graphics graphic)
         {
             this.graphics = graphic;
@@ -30,10 +37,12 @@ namespace FarthorlPacMan
 
         private void render()
         {
-
+            graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, 1200, 800);
+            drawPaths();
             while (true)
             {
-                graphics.FillRectangle(new SolidBrush(Color.Black), 0,0 , 1200,800 );
+                
+                //graphics.FillRectangle(new SolidBrush(Color.Black), 0,0 , 1200,800 );
             }
         }
 
@@ -77,6 +86,55 @@ namespace FarthorlPacMan
                 throw new FileLoadException();
             }
 
+
+        }
+
+        private void drawPaths()
+        {
+            for (int y = 0; y < yMax; y++)
+            {
+                for (int x = 0; x < xMax; x++)
+                {
+                    var elements = matrix[x,y].Trim().Split('|');
+                    int topIndex = int.Parse(elements[0]);
+                    int rightIndex = int.Parse(elements[1]);
+                    int bottomIndex = int.Parse(elements[2]);
+                    int leftIndex = int.Parse(elements[3]);
+                    int pointIndex = int.Parse(elements[4]);
+
+                    if (topIndex==1)
+                    {
+                        graphics.DrawLine(new Pen(wallColor), (x * 50), (y * 50), (x * 50) + 50, (y * 50));
+                    }
+
+                    if (rightIndex==1)
+                    {
+                       graphics.DrawLine(new Pen(wallColor), (x * 50) + 50, (y * 50), (x * 50) + 50, (y * 50) + 50);
+                    }
+
+                    if (bottomIndex==1)
+                    {
+                        graphics.DrawLine(new Pen(wallColor), (x * 50) , (y * 50) + 50, (x * 50) + 50, (y * 50) + 50);
+                    }
+
+                    if (leftIndex==1)
+                    {
+                        graphics.DrawLine(new Pen(wallColor), (x*50) , (y*50), (x*50) , (y*50) + 50);
+                    }
+
+                    if (pointIndex == 1)
+                    {
+                        Point point = new Point((x*50) + 25, (y*50) + 25);
+                        points.Add(point);
+                        point.drawPoint(graphics);
+                    }
+                    else
+                    {
+                        graphics.FillRectangle(new SolidBrush(wallColor), (x * 50), (y * 50), 50, 50);
+                    }
+
+                }
+            }
 
         }
     }
