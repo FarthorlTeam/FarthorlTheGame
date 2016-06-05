@@ -206,7 +206,7 @@ namespace FarthorlPacMan
                         graphics.FillEllipse(new SolidBrush(pacManColor), x - (diameter / 2),
                             ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter);
 
-                        System.Threading.Thread.Sleep(30);
+                        System.Threading.Thread.Sleep(10);
                     }
                     break;
 
@@ -219,7 +219,7 @@ namespace FarthorlPacMan
                         graphics.FillEllipse(new SolidBrush(pacManColor), x - (diameter / 2),
                             ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter);
 
-                        System.Threading.Thread.Sleep(30);
+                        System.Threading.Thread.Sleep(10);
                     }
                     break;
 
@@ -232,7 +232,7 @@ namespace FarthorlPacMan
                         graphics.FillEllipse(new SolidBrush(pacManColor), (positionQuadrantX*50)+25 - (diameter / 2),
                             y - (diameter / 2), diameter, diameter);
 
-                        System.Threading.Thread.Sleep(30);
+                        System.Threading.Thread.Sleep(10);
                     }
                     break;
 
@@ -245,7 +245,7 @@ namespace FarthorlPacMan
                         graphics.FillEllipse(new SolidBrush(pacManColor), (positionQuadrantX*50)+25 - (diameter / 2),
                             y - (diameter / 2), diameter, diameter);
 
-                        System.Threading.Thread.Sleep(30);
+                        System.Threading.Thread.Sleep(10);
                     }
                     break;
             }
