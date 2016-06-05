@@ -1,4 +1,6 @@
-﻿namespace FarthorlPacMan
+﻿using System.Threading;
+
+namespace FarthorlPacMan
 {
     using System.Drawing;
     using System.Windows.Forms;
@@ -44,14 +46,22 @@
             }
         }
 
-        public void updateScore(int score)
+        public void UpdateScores(int score)
         {
             ScoreLabel.Text = $"Scores: {score}";
+
         }
 
-        public void updateLeftScore(int leftScore)
+        public void updateLeftScore(int score)
         {
-            LeftScore.Text = $"Left scores: {leftScore}";
+            LeftScore.Text = $"Left scores: {score}";
         }
+
+        public void Win()
+        {
+
+            MessageBox.Show("You Win Farthorl PacMan game!");
+        }
+
     }
 }

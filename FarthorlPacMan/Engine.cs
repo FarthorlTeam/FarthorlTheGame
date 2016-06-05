@@ -16,9 +16,10 @@ namespace FarthorlPacMan
         private int xMax = 24;
         private int yMax = 16;
         private int leftScore;
+        private bool run = true;
         private string moveDirection;
         private Color wallColor=Color.Cyan;
-        private GameWindows game;
+        private readonly GameWindows game;
         List<Point> points=new List<Point>();
         public Engine(Graphics graphic, GameWindows game)
         {
@@ -26,38 +27,49 @@ namespace FarthorlPacMan
             this.game = game;
         }
 
-        public void initialize()
+        public void Initialize()
         {
             threadRendering = new Thread(new ThreadStart(render));
             initializeMatrix();
             DrawFontColor();
             drawPaths();
-            //Draw the points
             foreach (var point in points)
             {
                 point.drawPoint(graphics);
             }
             inicializeLeftScores();
             threadRendering.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         public void stopGame()
         {
             threadRendering.Abort();
+            run = false;
+        }
+
+        public void pauseGame()
+        {
+            this.run = false;
         }
 
         //Heare is the logic for gaming
         private void render()
         {
             PacMan pacMan = new PacMan(0, 0, this.graphics, this);
-
-            while (true)
+            Label scoreLabel=new Label();
+            scoreLabel.Width=250;
+            scoreLabel.Height = 50;
+            scoreLabel.Left = 3;
+            scoreLabel.Top = 802;
+            scoreLabel.BringToFront();
+            while (run)
             {
 
                 pacMan.move(this.graphics,this, moveDirection);
 
-                game.updateScore(pacMan.getScore());
-                updateLeftSores(pacMan.getScore());
+                game.UpdateScores(pacMan.getScore());
+                UpdateLeftSores(pacMan.getScore());
 
             }
         }
@@ -206,9 +218,14 @@ namespace FarthorlPacMan
             game.updateLeftScore(leftScore);
         }
 
-        private void updateLeftSores(int pacMandScores)
+        private void UpdateLeftSores(int pacMandScores)
         {
             game.updateLeftScore(leftScore - pacMandScores);
+            if (leftScore-pacMandScores==0)
+            {
+                pauseGame();
+                game.Win();
+            }
         }
 
     }

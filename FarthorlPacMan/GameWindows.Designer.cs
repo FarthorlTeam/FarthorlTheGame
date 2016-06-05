@@ -28,21 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pacMan = new System.Windows.Forms.Panel();
             this.ScoreLabel = new System.Windows.Forms.Label();
             this.LeftScore = new System.Windows.Forms.Label();
+            this.pacMan = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
-            // pacMan
-            // 
-            this.pacMan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pacMan.Location = new System.Drawing.Point(0, 0);
-            this.pacMan.MaximumSize = new System.Drawing.Size(1200, 800);
-            this.pacMan.MinimumSize = new System.Drawing.Size(1200, 800);
-            this.pacMan.Name = "pacMan";
-            this.pacMan.Size = new System.Drawing.Size(1200, 800);
-            this.pacMan.TabIndex = 0;
-            this.pacMan.Paint += new System.Windows.Forms.PaintEventHandler(this.pacMan_Paint);
             // 
             // ScoreLabel
             // 
@@ -68,6 +57,17 @@
             this.LeftScore.Text = "Left scores:";
             this.LeftScore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pacMan
+            // 
+            this.pacMan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pacMan.Location = new System.Drawing.Point(0, 0);
+            this.pacMan.MaximumSize = new System.Drawing.Size(1200, 800);
+            this.pacMan.MinimumSize = new System.Drawing.Size(1200, 800);
+            this.pacMan.Name = "pacMan";
+            this.pacMan.Size = new System.Drawing.Size(1200, 800);
+            this.pacMan.TabIndex = 0;
+            this.pacMan.Paint += new System.Windows.Forms.PaintEventHandler(this.pacMan_Paint);
+            // 
             // GameWindows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -91,10 +91,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel pacMan;
         public System.Windows.Forms.Label ScoreLabel;
         public System.Windows.Forms.Label LeftScore;
+        private System.Windows.Forms.Panel pacMan;
     }
 }
 
