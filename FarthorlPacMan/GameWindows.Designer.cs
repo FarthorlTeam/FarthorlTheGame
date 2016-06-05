@@ -85,7 +85,6 @@
             this.Text = "Farthorl PacMan Game";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GameWindows_FormClosed);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameWindows_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.GameWindows_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

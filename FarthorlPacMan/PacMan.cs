@@ -10,6 +10,7 @@ namespace FarthorlPacMan
         private int positionQuadrantX = 0;
         private int positionQuadrantY = 0;
         private const int diameter = 30;
+        private const int quadrantDimension = 50;
         private Color pacManColor = Color.Yellow;
         private string movedDirection = "";
         private string previousDirection = "";
@@ -167,8 +168,6 @@ namespace FarthorlPacMan
 
                 if (isAlive && elements[0] == "0")
                 {
-                    //this.clearPacMan(graphic);
-
                     if (elements[4] == "1")
                     {
                         eatPoints = eatPoints + int.Parse(elements[4]);
@@ -178,18 +177,18 @@ namespace FarthorlPacMan
                     this.movePacMan(graphic, nextQuandrantX, nextQuadrantY, "Down");
                     this.positionQuadrantX = nextQuandrantX;
                     this.positionQuadrantY = nextQuadrantY;
-                    previousDirection = "Down";
-                    movedDirection = "Down";
+                    this.previousDirection = "Down";
+                    this.movedDirection = "Down";
                     engine.EatPointAdnUpdateMatrix(this.positionQuadrantX, this.positionQuadrantY, elements);
 
                 }
                 else if (elements[0] == "1" && positionQuadrantY < engine.GetMaxY())
                 {
-                    if (movedDirection == "")
+                    if (this.movedDirection == "")
                     {
-                        previousDirection = "";
+                        this.previousDirection = "";
                     }
-                    movedDirection ="";
+                    this.movedDirection ="";
                     this.move(graphic, engine, previousDirection);
                 }
             }
@@ -197,64 +196,129 @@ namespace FarthorlPacMan
 
         public void drawPacMan(Graphics graphics)
         {
-            graphics.FillEllipse(new SolidBrush(pacManColor), (positionQuadrantX*50)+25 - (diameter / 2),
-                ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter);
+            graphics.FillEllipse(
+                new SolidBrush(pacManColor), 
+                (this.positionQuadrantX * quadrantDimension) + (quadrantDimension / 2) - (diameter / 2),
+                ((this.positionQuadrantY * quadrantDimension) + (quadrantDimension / 2) - (diameter / 2)), 
+                diameter, 
+                diameter
+                );
         }
 
         async public void movePacMan(Graphics graphics, int nextX, int nextY, string moving)
         {
-            graphics.FillRectangle(new SolidBrush(Color.Black), (positionQuadrantX * 50) + 25 - (diameter / 2) - 3,
-                ((positionQuadrantY * 50) + 25 - (diameter / 2) - 3), diameter + 6, diameter + 6);
+            graphics.FillRectangle(
+                new SolidBrush(Color.Black), 
+                (this.positionQuadrantX * quadrantDimension) + (quadrantDimension / 2) - (diameter / 2) - 3,
+                ((this.positionQuadrantY * quadrantDimension) + (quadrantDimension / 2) - (diameter / 2) - 3),
+                diameter + 6, 
+                diameter + 6
+                );
 
             switch (moving)
             {
                 case "Right":
-                    for (int x = (positionQuadrantX * 50) + 25; x < (nextX*50)+25; x++)
+                    for (int x = (this.positionQuadrantX * quadrantDimension) + (quadrantDimension / 2); 
+                        x < (nextX * quadrantDimension) + (quadrantDimension / 2); 
+                        x++)
                     {                
-                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle(x-1 - (diameter / 2),
-                            ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter) );
+                        graphics.DrawEllipse(
+                            new Pen(Color.Black),
+                            new Rectangle( 
+                                x-1 - (diameter / 2),
+                                (this.positionQuadrantY * quadrantDimension) + (quadrantDimension / 2) - (diameter / 2),
+                                diameter, 
+                                diameter
+                                )
+                            );
 
-                        graphics.FillEllipse(new SolidBrush(pacManColor), x - (diameter / 2),
-                            ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter);
+                        graphics.FillEllipse(
+                            new SolidBrush(pacManColor), 
+                            x - (diameter / 2),
+                            (this.positionQuadrantY * quadrantDimension) + (quadrantDimension / 2) - (diameter / 2), 
+                            diameter, 
+                            diameter
+                            );
 
                         System.Threading.Thread.Sleep(10);
                     }
                     break;
 
                 case "Left":
-                    for (int x = (positionQuadrantX * 50) + 25; x > (nextX * 50) + 25; x--)
+                    for (int x = (this.positionQuadrantX * quadrantDimension) + (quadrantDimension / 2); 
+                        x > (nextX * quadrantDimension) + (quadrantDimension / 2); 
+                        x--)
                     {
-                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle(x+1  - (diameter / 2),
-                            ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter) );
+                        graphics.DrawEllipse(
+                            new Pen(Color.Black),
+                            new Rectangle(
+                                x+1  - (diameter / 2),
+                                (this.positionQuadrantY * quadrantDimension) + (quadrantDimension / 2) - (diameter / 2), 
+                                diameter, 
+                                diameter
+                                ) 
+                            );
 
-                        graphics.FillEllipse(new SolidBrush(pacManColor), x - (diameter / 2),
-                            ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter);
+                        graphics.FillEllipse(
+                            new SolidBrush(pacManColor), x - (diameter / 2),
+                            (this.positionQuadrantY * quadrantDimension) + (quadrantDimension / 2) - (diameter / 2), 
+                            diameter, 
+                            diameter
+                            );
 
                         System.Threading.Thread.Sleep(10);
                     }
                     break;
 
                 case "Up":
-                    for (int y = (this.positionQuadrantY * 50) + 25; y > (nextY * 50) + 25; y--)
+                    for (int y = (this.positionQuadrantY * quadrantDimension) + (quadrantDimension / 2); 
+                        y > (nextY * quadrantDimension) + (quadrantDimension / 2); 
+                        y--)
                     {
-                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle((positionQuadrantX * 50) + 25 - (diameter / 2),
-                            y+1 - (diameter / 2), diameter, diameter) );
+                        graphics.DrawEllipse(
+                            new Pen(Color.Black),
+                            new Rectangle(
+                                (this.positionQuadrantX * quadrantDimension) + (quadrantDimension / 2) - (diameter / 2),
+                                y+1 - (diameter / 2), 
+                                diameter, 
+                                diameter
+                                )
+                            );
 
-                        graphics.FillEllipse(new SolidBrush(pacManColor), (positionQuadrantX * 50)+25 - (diameter / 2),
-                            y - (diameter / 2), diameter, diameter);
+                        graphics.FillEllipse(
+                            new SolidBrush(pacManColor), 
+                            (this.positionQuadrantX * quadrantDimension) +(quadrantDimension / 2) - (diameter / 2),
+                            y - (diameter / 2), 
+                            diameter, 
+                            diameter
+                            );
 
                         System.Threading.Thread.Sleep(10);
                     }
                     break;
 
                 case "Down":
-                    for (int y = (this.positionQuadrantY * 50) + 25; y < (nextY * 50) + 25; y++)
+                    for (int y = (this.positionQuadrantY * quadrantDimension) + (quadrantDimension / 2); 
+                        y < (nextY * quadrantDimension) + (quadrantDimension / 2);
+                        y++)
                     {
-                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle((positionQuadrantX * 50) + 25 - (diameter / 2),
-                            y-1 - (diameter / 2), diameter, diameter) );
+                        graphics.DrawEllipse(
+                            new Pen(Color.Black),
+                            new Rectangle(
+                                (this.positionQuadrantX * quadrantDimension) + (quadrantDimension / 2) - (diameter / 2),
+                                y-1 - (diameter / 2), 
+                                diameter, 
+                                diameter
+                                )
+                            );
 
-                        graphics.FillEllipse(new SolidBrush(pacManColor), (positionQuadrantX*50)+25 - (diameter / 2),
-                            y - (diameter / 2), diameter, diameter);
+                        graphics.FillEllipse(
+                            new SolidBrush(pacManColor), 
+                            (this.positionQuadrantX * quadrantDimension) + (quadrantDimension / 2) - (diameter / 2),
+                            y - (diameter / 2), 
+                            diameter, 
+                            diameter
+                            );
 
                         System.Threading.Thread.Sleep(10);
                     }
@@ -269,7 +333,7 @@ namespace FarthorlPacMan
           
                 if (elements[4] == "1")
                 {
-                    eatPoints = eatPoints+int.Parse(elements[4]);
+                this.eatPoints = this.eatPoints + int.Parse(elements[4]);
                     elements[4] = "0";
                 }
                 this.drawPacMan(graphics);

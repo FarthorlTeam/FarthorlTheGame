@@ -21,37 +21,31 @@
             this.game.stopGame();
         }
 
-        private void GameWindows_KeyPress(object sender, KeyPressEventArgs e)
-        {
-        
-        }
-
         private void GameWindows_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue==39)
+            if (e.KeyValue==39) //If press right arrow
             {
                 game.Direction("Right");
             }
 
             if (e.KeyValue==37)
             {
-                game.Direction("Left");
+                game.Direction("Left"); //If press left arrow 
             }
 
             if (e.KeyValue == 38)
             {
-                game.Direction("Up");
+                game.Direction("Up"); //If press up arrow
             }
 
             if (e.KeyValue == 40)
             {
-                game.Direction("Down");
+                game.Direction("Down"); //If press down arrow
             }
         }
 
         public void updateScore(int score)
         {
-
             ScoreLabel.Text = $"Scores: {score}";
         }
 
