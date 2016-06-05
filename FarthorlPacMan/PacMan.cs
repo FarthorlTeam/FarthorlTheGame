@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace FarthorlPacMan
 {
@@ -25,23 +26,16 @@ namespace FarthorlPacMan
         {
             if (!String.IsNullOrEmpty(direction))
             {
-                movedDirection = direction;
-                if (movedDirection=="Right")
+                if (direction == "Right")
                 {
                     tryMoveRight(graphic, engine);
-                }
-
-                if (movedDirection=="Left")
+                } else if (direction == "Left")
                 {
                     tryMoveLeft(graphic,engine);
-                }
-
-                if (movedDirection == "Up")
+                } else if (direction == "Up")
                 {
                     tryMoveUp(graphic, engine);
-                }
-
-                if (movedDirection == "Down")
+                } else if (direction == "Down")
                 {
                     tryMoveDown(graphic, engine);
                 }
@@ -175,8 +169,8 @@ namespace FarthorlPacMan
                 }
                 else if (elements[0] == "1" && positionQuadrantX < engine.GetMaxY() - 1)
                 {
-                    movedDirection = previousDirection;
-                    this.move(graphic, engine, movedDirection);
+                    movedDirection="";
+                    this.move(graphic, engine, previousDirection);
                 }
             }
         }
@@ -189,12 +183,15 @@ namespace FarthorlPacMan
 
         async public void movePacMan(Graphics graphics, int nextX, int nextY, string moving)
         {
+            graphics.FillRectangle(new SolidBrush(Color.Black), (positionQuadrantX * 50) + 25 - (diameter / 2) - 3,
+                ((positionQuadrantY * 50) + 25 - (diameter / 2) - 3), diameter + 6, diameter + 6);
+
             switch (moving)
             {
                 case "Right":
                     for (int x = (positionQuadrantX * 50) + 25; x < (nextX*50)+25; x++)
                     {                
-                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle(x - 2 - (diameter / 2),
+                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle(x-1 - (diameter / 2),
                             ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter) );
 
                         graphics.FillEllipse(new SolidBrush(pacManColor), x - (diameter / 2),
@@ -207,7 +204,7 @@ namespace FarthorlPacMan
                 case "Left":
                     for (int x = (positionQuadrantX * 50) + 25; x > (nextX * 50) + 25; x--)
                     {
-                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle(x + 2 - (diameter / 2),
+                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle(x+1  - (diameter / 2),
                             ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter) );
 
                         graphics.FillEllipse(new SolidBrush(pacManColor), x - (diameter / 2),
@@ -221,9 +218,9 @@ namespace FarthorlPacMan
                     for (int y = (this.positionQuadrantY * 50) + 25; y > (nextY * 50) + 25; y--)
                     {
                         graphics.DrawEllipse(new Pen(Color.Black),new Rectangle((positionQuadrantX * 50) + 25 - (diameter / 2),
-                            y + 1 - (diameter / 2), diameter, diameter) );
+                            y+1 - (diameter / 2), diameter, diameter) );
 
-                        graphics.FillEllipse(new SolidBrush(pacManColor), (positionQuadrantX*50)+25 - (diameter / 2),
+                        graphics.FillEllipse(new SolidBrush(pacManColor), (positionQuadrantX * 50)+25 - (diameter / 2),
                             y - (diameter / 2), diameter, diameter);
 
                         System.Threading.Thread.Sleep(10);
@@ -234,7 +231,7 @@ namespace FarthorlPacMan
                     for (int y = (this.positionQuadrantY * 50) + 25; y < (nextY * 50) + 25; y++)
                     {
                         graphics.DrawEllipse(new Pen(Color.Black),new Rectangle((positionQuadrantX * 50) + 25 - (diameter / 2),
-                            y - 1 - (diameter / 2), diameter, diameter) );
+                            y-1 - (diameter / 2), diameter, diameter) );
 
                         graphics.FillEllipse(new SolidBrush(pacManColor), (positionQuadrantX*50)+25 - (diameter / 2),
                             y - (diameter / 2), diameter, diameter);
