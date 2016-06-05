@@ -48,5 +48,9 @@ namespace FarthorlPacMan
             return this.centerY;
         }
 
+        public bool isEatPoint()
+        {
+            return this.isCollected;
+        }
     }
 }

@@ -49,7 +49,7 @@ namespace FarthorlPacMan
             {
                 int nextQuandrantX = this.positionQuadrantX + 1;
                 int nextQuadrantY = this.positionQuadrantY;
-                string[] elements = engine.getQuadrantElements(nextQuandrantX, nextQuadrantY);
+                string[] elements = engine.GetQuadrantElements(nextQuandrantX, nextQuadrantY);
 
                 if (isAlive && elements[3]=="0")
                 {
@@ -66,7 +66,7 @@ namespace FarthorlPacMan
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Right";
                     movedDirection = "Right";
-                    engine.updateMatrihElements(this.positionQuadrantX, this.positionQuadrantY, elements);
+                    engine.EatPointAdnUpdateMatrix(this.positionQuadrantX, this.positionQuadrantY, elements);
 
                 } else if (elements[3]=="1" && positionQuadrantX < engine.GetMaxX()-1 )
                 {
@@ -87,7 +87,7 @@ namespace FarthorlPacMan
             {
                 int nextQuandrantX = this.positionQuadrantX - 1;
                 int nextQuadrantY = this.positionQuadrantY;
-                string[] elements = engine.getQuadrantElements(nextQuandrantX, nextQuadrantY);
+                string[] elements = engine.GetQuadrantElements(nextQuandrantX, nextQuadrantY);
 
                 if (isAlive && elements[1] == "0")
                 {
@@ -104,7 +104,7 @@ namespace FarthorlPacMan
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Left";
                     movedDirection = "Left";
-                    engine.updateMatrihElements(this.positionQuadrantX, this.positionQuadrantY, elements);
+                    engine.EatPointAdnUpdateMatrix(this.positionQuadrantX, this.positionQuadrantY, elements);
 
                 }
                 else if (elements[1] == "1" && positionQuadrantX > 0 )
@@ -125,7 +125,7 @@ namespace FarthorlPacMan
             {
                 int nextQuandrantX = this.positionQuadrantX;
                 int nextQuadrantY = this.positionQuadrantY-1;
-                string[] elements = engine.getQuadrantElements(nextQuandrantX, nextQuadrantY);
+                string[] elements = engine.GetQuadrantElements(nextQuandrantX, nextQuadrantY);
 
                 if (isAlive && elements[2] == "0")
                 {
@@ -142,7 +142,7 @@ namespace FarthorlPacMan
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Up";
                     movedDirection = "Up";
-                    engine.updateMatrihElements(this.positionQuadrantX, this.positionQuadrantY, elements);
+                    engine.EatPointAdnUpdateMatrix(this.positionQuadrantX, this.positionQuadrantY, elements);
 
                 }
                 else if (elements[1] == "1" && positionQuadrantX > 0 )
@@ -163,7 +163,7 @@ namespace FarthorlPacMan
             {
                 int nextQuandrantX = this.positionQuadrantX;
                 int nextQuadrantY = this.positionQuadrantY+1;
-                string[] elements = engine.getQuadrantElements(nextQuandrantX, nextQuadrantY);
+                string[] elements = engine.GetQuadrantElements(nextQuandrantX, nextQuadrantY);
 
                 if (isAlive && elements[0] == "0")
                 {
@@ -180,7 +180,7 @@ namespace FarthorlPacMan
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Down";
                     movedDirection = "Down";
-                    engine.updateMatrihElements(this.positionQuadrantX, this.positionQuadrantY, elements);
+                    engine.EatPointAdnUpdateMatrix(this.positionQuadrantX, this.positionQuadrantY, elements);
 
                 }
                 else if (elements[0] == "1" && positionQuadrantY < engine.GetMaxY())
@@ -264,7 +264,7 @@ namespace FarthorlPacMan
 
         private void initializePacMan(Graphics graphics,Engine engine)
         {
-            string[] elements = engine.getQuadrantElements(this.positionQuadrantX, this.positionQuadrantY);
+            string[] elements = engine.GetQuadrantElements(this.positionQuadrantX, this.positionQuadrantY);
 
           
                 if (elements[4] == "1")
@@ -273,7 +273,7 @@ namespace FarthorlPacMan
                     elements[4] = "0";
                 }
                 this.drawPacMan(graphics);
-                engine.updateMatrihElements(this.positionQuadrantX, this.positionQuadrantY, elements);
+                engine.EatPointAdnUpdateMatrix(this.positionQuadrantX, this.positionQuadrantY, elements);
         }
 
         public int getScore()

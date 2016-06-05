@@ -28,9 +28,16 @@ namespace FarthorlPacMan
 
         public void initialize()
         {
+            threadRendering = new Thread(new ThreadStart(render));
             initializeMatrix();
+            DrawFontColor();
+            drawPaths();
+            //Draw the points
+            foreach (var point in points)
+            {
+                point.drawPoint(graphics);
+            }
             inicializeLeftScores();
-            threadRendering=new Thread(new ThreadStart(render));
             threadRendering.Start();
         }
 
@@ -42,15 +49,7 @@ namespace FarthorlPacMan
         //Heare is the logic for gaming
         private void render()
         {
-            drawFont();
-            drawPaths();
-            PacMan pacMan=new PacMan(0,0,this.graphics,this);
-
-            //Draw the points
-            foreach (var point in points)
-            {
-                point.drawPoint(graphics);
-            }
+            PacMan pacMan = new PacMan(0, 0, this.graphics, this);
 
             while (true)
             {
@@ -154,7 +153,7 @@ namespace FarthorlPacMan
 
         }
 
-        private void drawFont()
+        private void DrawFontColor()
         {
             graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, 1200, 800);
         }
@@ -169,13 +168,13 @@ namespace FarthorlPacMan
             return this.yMax;
         }
 
-        public string[] getQuadrantElements(int quadrantX, int quandrantY)
+        public string[] GetQuadrantElements(int quadrantX, int quandrantY)
         {
             string[] elements = pathsMatrix[quadrantX, quandrantY].Trim().Split('|');
             return elements;
         }
 
-        public void updateMatrihElements(int quadrantX, int quandrantY, string[] element)
+        public void EatPointAdnUpdateMatrix(int quadrantX, int quandrantY, string[] element)
         {
             var stringValue =$"{element[0]}|{element[1]}|{element[2]}|{element[3]}|{element[4]}";
             pathsMatrix[quadrantX, quandrantY] = stringValue;
@@ -190,17 +189,19 @@ namespace FarthorlPacMan
             }
         }
 
-        public void changeDirection(string changeDirection)
+        public void changeDirection(string newDirection)
         {
-            moveDirection = changeDirection;
+            this.moveDirection = newDirection;
         }
 
         private void inicializeLeftScores()
         {
-            foreach (var element in pathsMatrix)
+            foreach (var point in points)
             {
-                var elements = element.Trim().Split('|');
-                leftScore = leftScore + int.Parse(elements[4]);
+                if (!point.isEatPoint())
+                {
+                    leftScore = leftScore + 1;
+                }
             }
             game.updateLeftScore(leftScore);
         }
