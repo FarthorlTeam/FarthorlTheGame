@@ -28,7 +28,6 @@
 
         private void GameWindows_KeyDown(object sender, KeyEventArgs e)
         {
-            MessageBox.Show(e.KeyValue.ToString());
             if (e.KeyValue==39)
             {
                 game.Direction("Right");
@@ -37,7 +36,17 @@
             if (e.KeyValue==37)
             {
                 game.Direction("Left");
-            }       
+            }
+
+            if (e.KeyValue == 38)
+            {
+                game.Direction("Up");
+            }
+
+            if (e.KeyValue == 40)
+            {
+                game.Direction("Down");
+            }
         }
     }
 }

@@ -40,10 +40,15 @@ namespace FarthorlPacMan
                 {
                     tryMoveUp(graphic, engine);
                 }
+
+                if (movedDirection == "Down")
+                {
+                    tryMoveDown(graphic, engine);
+                }
             }
         }
 
-        private void tryMoveRight(Graphics graphics, Engine engine)
+        private void tryMoveRight(Graphics graphic, Engine engine)
         {
             
             if (positionQuadrantX < engine.GetMaxX()-1)
@@ -54,7 +59,7 @@ namespace FarthorlPacMan
 
                 if (isAlive && elements[3]=="0")
                 {
-                    this.clearPacMan(graphics);
+                    this.clearPacMan(graphic);
 
                     if (elements[4]=="1")
                     {
@@ -62,7 +67,7 @@ namespace FarthorlPacMan
                         elements[4] = "0";
                     }
 
-                    this.movePacMan(graphics,nextQuandrantX,nextQuadrantY,"Right");
+                    this.movePacMan(graphic, nextQuandrantX,nextQuadrantY,"Right");
                     this.positionQuadrantX = nextQuandrantX;
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Right";
@@ -71,12 +76,12 @@ namespace FarthorlPacMan
                 } else if (elements[3]=="1" && positionQuadrantX < engine.GetMaxX()-1)
                 {
                     movedDirection = previousDirection;
-                    this.move(graphics, engine,movedDirection);
+                    this.move(graphic, engine,movedDirection);
                 }
             }
         }
 
-        private void tryMoveLeft(Graphics graphics, Engine engine)
+        private void tryMoveLeft(Graphics graphic, Engine engine)
         {
 
             if (positionQuadrantX > 0)
@@ -87,7 +92,7 @@ namespace FarthorlPacMan
 
                 if (isAlive && elements[1] == "0")
                 {
-                    this.clearPacMan(graphics);
+                    this.clearPacMan(graphic);
 
                     if (elements[4] == "1")
                     {
@@ -95,7 +100,7 @@ namespace FarthorlPacMan
                         elements[4] = "0";
                     }
 
-                    this.movePacMan(graphics, nextQuandrantX, nextQuadrantY, "Left");
+                    this.movePacMan(graphic, nextQuandrantX, nextQuadrantY, "Left");
                     this.positionQuadrantX = nextQuandrantX;
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Left";
@@ -105,12 +110,12 @@ namespace FarthorlPacMan
                 else if (elements[1] == "1" && positionQuadrantX > 0)
                 {
                     movedDirection = previousDirection;
-                    this.move(graphics, engine, movedDirection);
+                    this.move(graphic, engine, movedDirection);
                 }
             }
         }
 
-        private void tryMoveUp(Graphics graphics, Engine engine)
+        private void tryMoveUp(Graphics graphic, Engine engine)
         {
             if (positionQuadrantY > 0)
             {
@@ -120,7 +125,7 @@ namespace FarthorlPacMan
 
                 if (isAlive && elements[0] == "0")
                 {
-                    this.clearPacMan(graphics);
+                    this.clearPacMan(graphic);
 
                     if (elements[4] == "1")
                     {
@@ -128,7 +133,7 @@ namespace FarthorlPacMan
                         elements[4] = "0";
                     }
 
-                    this.movePacMan(graphics, nextQuandrantX, nextQuadrantY, "UP");
+                    this.movePacMan(graphic, nextQuandrantX, nextQuadrantY, "Up");
                     this.positionQuadrantX = nextQuandrantX;
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Up";
@@ -138,7 +143,40 @@ namespace FarthorlPacMan
                 else if (elements[1] == "1" && positionQuadrantX > 0)
                 {
                     movedDirection = previousDirection;
-                    this.move(graphics, engine, movedDirection);
+                    this.move(graphic, engine, movedDirection);
+                }
+            }
+        }
+
+        private void tryMoveDown(Graphics graphic, Engine engine)
+        {
+            if (positionQuadrantX < engine.GetMaxY() - 1)
+            {
+                int nextQuandrantX = this.positionQuadrantX;
+                int nextQuadrantY = this.positionQuadrantY+1;
+                string[] elements = engine.getQuadrantElements(nextQuandrantX, nextQuadrantY);
+
+                if (isAlive && elements[2] == "0")
+                {
+                    this.clearPacMan(graphic);
+
+                    if (elements[4] == "1")
+                    {
+                        eatPoints += int.Parse(elements[4]);
+                        elements[4] = "0";
+                    }
+
+                    this.movePacMan(graphic, nextQuandrantX, nextQuadrantY, "Down");
+                    this.positionQuadrantX = nextQuandrantX;
+                    this.positionQuadrantY = nextQuadrantY;
+                    previousDirection = "Down";
+                    engine.updateMatrihElements(this.positionQuadrantX, this.positionQuadrantY, elements);
+
+                }
+                else if (elements[3] == "2" && positionQuadrantX < engine.GetMaxY() - 1)
+                {
+                    movedDirection = previousDirection;
+                    this.move(graphic, engine, movedDirection);
                 }
             }
         }
@@ -186,28 +224,28 @@ namespace FarthorlPacMan
                     break;
 
                 case "Up":
-                    for (int y = (positionQuadrantY * 50) + 25; y > (nextY * 50) + 25; y--)
+                    for (int y = (this.positionQuadrantY * 50) + 25; y > (nextY * 50) + 25; y--)
                     {
-                        graphics.FillEllipse(new SolidBrush(pacManColor), y+1 - (diameter / 2),
-                            ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter);
+                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle((positionQuadrantX * 50) + 25 - (diameter / 2),
+                            y + 1 - (diameter / 2), diameter, diameter) );
 
-                        graphics.FillEllipse(new SolidBrush(pacManColor), y - (diameter / 2),
-                            ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter);
+                        graphics.FillEllipse(new SolidBrush(pacManColor), (positionQuadrantX*50)+25 - (diameter / 2),
+                            y - (diameter / 2), diameter, diameter);
 
-                        System.Threading.Thread.Sleep(80);
+                        System.Threading.Thread.Sleep(30);
                     }
                     break;
 
                 case "Down":
-                    for (int y = (positionQuadrantY * 50) + 25; y < (nextY * 50) + 25; y++)
+                    for (int y = (this.positionQuadrantY * 50) + 25; y < (nextY * 50) + 25; y++)
                     {
-                        graphics.FillEllipse(new SolidBrush(pacManColor), y+1 - (diameter / 2),
-                            ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter);
+                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle((positionQuadrantX * 50) + 25 - (diameter / 2),
+                            y - 1 - (diameter / 2), diameter, diameter) );
 
-                        graphics.FillEllipse(new SolidBrush(pacManColor), y - (diameter / 2),
-                            ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter);
+                        graphics.FillEllipse(new SolidBrush(pacManColor), (positionQuadrantX*50)+25 - (diameter / 2),
+                            y - (diameter / 2), diameter, diameter);
 
-                        System.Threading.Thread.Sleep(80);
+                        System.Threading.Thread.Sleep(30);
                     }
                     break;
             }
