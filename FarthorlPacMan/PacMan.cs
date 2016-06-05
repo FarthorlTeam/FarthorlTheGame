@@ -59,7 +59,7 @@ namespace FarthorlPacMan
 
                 if (isAlive && elements[3]=="0")
                 {
-                    this.clearPacMan(graphic);
+                    //this.clearPacMan(graphic);
 
                     if (elements[4]=="1")
                     {
@@ -92,7 +92,7 @@ namespace FarthorlPacMan
 
                 if (isAlive && elements[1] == "0")
                 {
-                    this.clearPacMan(graphic);
+                    //this.clearPacMan(graphic);
 
                     if (elements[4] == "1")
                     {
@@ -123,9 +123,9 @@ namespace FarthorlPacMan
                 int nextQuadrantY = this.positionQuadrantY-1;
                 string[] elements = engine.getQuadrantElements(nextQuandrantX, nextQuadrantY);
 
-                if (isAlive && elements[0] == "0")
+                if (isAlive && elements[2] == "0")
                 {
-                    this.clearPacMan(graphic);
+                    //this.clearPacMan(graphic);
 
                     if (elements[4] == "1")
                     {
@@ -150,15 +150,15 @@ namespace FarthorlPacMan
 
         private void tryMoveDown(Graphics graphic, Engine engine)
         {
-            if (positionQuadrantX < engine.GetMaxY() - 1)
+            if (positionQuadrantY < engine.GetMaxY() - 1)
             {
                 int nextQuandrantX = this.positionQuadrantX;
                 int nextQuadrantY = this.positionQuadrantY+1;
                 string[] elements = engine.getQuadrantElements(nextQuandrantX, nextQuadrantY);
 
-                if (isAlive && elements[2] == "0")
+                if (isAlive && elements[0] == "0")
                 {
-                    this.clearPacMan(graphic);
+                    //this.clearPacMan(graphic);
 
                     if (elements[4] == "1")
                     {
@@ -173,18 +173,12 @@ namespace FarthorlPacMan
                     engine.updateMatrihElements(this.positionQuadrantX, this.positionQuadrantY, elements);
 
                 }
-                else if (elements[3] == "2" && positionQuadrantX < engine.GetMaxY() - 1)
+                else if (elements[0] == "1" && positionQuadrantX < engine.GetMaxY() - 1)
                 {
                     movedDirection = previousDirection;
                     this.move(graphic, engine, movedDirection);
                 }
             }
-        }
-
-        private void clearPacMan(Graphics graphics)
-        {
-            graphics.FillEllipse(new SolidBrush(Color.Black), ((positionQuadrantX*50)+25 - (diameter / 2) - 1),
-                   ((positionQuadrantY*50)+25 - (diameter / 2) - 1), diameter + 2, diameter + 2);
         }
 
         public void drawPacMan(Graphics graphics)
@@ -200,7 +194,7 @@ namespace FarthorlPacMan
                 case "Right":
                     for (int x = (positionQuadrantX * 50) + 25; x < (nextX*50)+25; x++)
                     {                
-                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle(x - 1 - (diameter / 2),
+                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle(x - 2 - (diameter / 2),
                             ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter) );
 
                         graphics.FillEllipse(new SolidBrush(pacManColor), x - (diameter / 2),
@@ -213,7 +207,7 @@ namespace FarthorlPacMan
                 case "Left":
                     for (int x = (positionQuadrantX * 50) + 25; x > (nextX * 50) + 25; x--)
                     {
-                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle(x + 1 - (diameter / 2),
+                        graphics.DrawEllipse(new Pen(Color.Black),new Rectangle(x + 2 - (diameter / 2),
                             ((positionQuadrantY * 50) + 25 - (diameter / 2)), diameter, diameter) );
 
                         graphics.FillEllipse(new SolidBrush(pacManColor), x - (diameter / 2),
