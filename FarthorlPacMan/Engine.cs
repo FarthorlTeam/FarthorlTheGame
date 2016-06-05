@@ -15,17 +15,21 @@ namespace FarthorlPacMan
         private string[,] pathsMatrix=new string[24,16];
         private int xMax = 24;
         private int yMax = 16;
+        private int leftScore;
         private string moveDirection;
         private Color wallColor=Color.Cyan;
+        private GameWindows game;
         List<Point> points=new List<Point>();
-        public Engine(Graphics graphic)
+        public Engine(Graphics graphic, GameWindows game)
         {
             this.graphics = graphic;
+            this.game = game;
         }
 
         public void initialize()
         {
             initializeMatrix();
+            inicializeLeftScores();
             threadRendering=new Thread(new ThreadStart(render));
             threadRendering.Start();
         }
@@ -52,6 +56,9 @@ namespace FarthorlPacMan
             {
 
                 pacMan.move(this.graphics,this, moveDirection);
+
+                game.updateScore(pacMan.getScore());
+                updateLeftSores(pacMan.getScore());
 
             }
         }
@@ -186,6 +193,21 @@ namespace FarthorlPacMan
         public void changeDirection(string changeDirection)
         {
             moveDirection = changeDirection;
+        }
+
+        private void inicializeLeftScores()
+        {
+            foreach (var element in pathsMatrix)
+            {
+                var elements = element.Trim().Split('|');
+                leftScore = leftScore + int.Parse(elements[4]);
+            }
+            game.updateLeftScore(leftScore);
+        }
+
+        private void updateLeftSores(int pacMandScores)
+        {
+            game.updateLeftScore(leftScore - pacMandScores);
         }
 
     }

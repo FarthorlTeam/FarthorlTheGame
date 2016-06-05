@@ -5,9 +5,9 @@
     class Game
     {
         private Engine graphicEngine;
-        public void startDraw(Graphics graphic)
+        public void startDraw(Graphics graphic, GameWindows game)
         {
-            this.graphicEngine = new Engine(graphic);
+            this.graphicEngine = new Engine(graphic, game);
             this.graphicEngine.initialize();
         }
 

@@ -13,7 +13,7 @@
         private void pacMan_Paint(object sender, PaintEventArgs e)
         {
             Graphics graphics = pacMan.CreateGraphics();
-            this.game.startDraw(graphics);
+            this.game.startDraw(graphics, this);
         }
 
         private void GameWindows_FormClosed(object sender, FormClosedEventArgs e)
@@ -47,6 +47,16 @@
             {
                 game.Direction("Down");
             }
+        }
+
+        public void updateScore(int score)
+        {
+            ScoreLabel.Text = $"Scores: {score}";
+        }
+
+        public void updateLeftScore(int leftScore)
+        {
+            LeftScore.Text = $"Left scores: {leftScore}";
         }
     }
 }

@@ -53,24 +53,29 @@ namespace FarthorlPacMan
 
                 if (isAlive && elements[3]=="0")
                 {
-                    //this.clearPacMan(graphic);
 
                     if (elements[4]=="1")
                     {
-                        eatPoints += int.Parse(elements[4]);
+                        eatPoints = eatPoints+int.Parse(elements[4]);
                         elements[4] = "0";
+                        
                     }
 
                     this.movePacMan(graphic, nextQuandrantX,nextQuadrantY,"Right");
                     this.positionQuadrantX = nextQuandrantX;
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Right";
+                    movedDirection = "Right";
                     engine.updateMatrihElements(this.positionQuadrantX, this.positionQuadrantY, elements);
 
-                } else if (elements[3]=="1" && positionQuadrantX < engine.GetMaxX()-1)
+                } else if (elements[3]=="1" && positionQuadrantX < engine.GetMaxX()-1 )
                 {
-                    movedDirection = previousDirection;
-                    this.move(graphic, engine,movedDirection);
+                    if (movedDirection=="")
+                    {
+                        previousDirection = "";
+                    }
+                    movedDirection = "";
+                    this.move(graphic, engine,previousDirection);
                 }
             }
         }
@@ -90,7 +95,7 @@ namespace FarthorlPacMan
 
                     if (elements[4] == "1")
                     {
-                        eatPoints += int.Parse(elements[4]);
+                        eatPoints = eatPoints + int.Parse(elements[4]);
                         elements[4] = "0";
                     }
 
@@ -98,13 +103,18 @@ namespace FarthorlPacMan
                     this.positionQuadrantX = nextQuandrantX;
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Left";
+                    movedDirection = "Left";
                     engine.updateMatrihElements(this.positionQuadrantX, this.positionQuadrantY, elements);
 
                 }
-                else if (elements[1] == "1" && positionQuadrantX > 0)
+                else if (elements[1] == "1" && positionQuadrantX > 0 )
                 {
-                    movedDirection = previousDirection;
-                    this.move(graphic, engine, movedDirection);
+                    if (movedDirection == "")
+                    {
+                        previousDirection = "";
+                    }
+                    movedDirection = "";
+                    this.move(graphic, engine, previousDirection);
                 }
             }
         }
@@ -123,7 +133,7 @@ namespace FarthorlPacMan
 
                     if (elements[4] == "1")
                     {
-                        eatPoints += int.Parse(elements[4]);
+                        eatPoints = eatPoints + int.Parse(elements[4]);
                         elements[4] = "0";
                     }
 
@@ -131,13 +141,18 @@ namespace FarthorlPacMan
                     this.positionQuadrantX = nextQuandrantX;
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Up";
+                    movedDirection = "Up";
                     engine.updateMatrihElements(this.positionQuadrantX, this.positionQuadrantY, elements);
 
                 }
-                else if (elements[1] == "1" && positionQuadrantX > 0)
+                else if (elements[1] == "1" && positionQuadrantX > 0 )
                 {
-                    movedDirection = previousDirection;
-                    this.move(graphic, engine, movedDirection);
+                    if (movedDirection == "")
+                    {
+                        previousDirection = "";
+                    }
+                    movedDirection = "";
+                    this.move(graphic, engine, previousDirection);
                 }
             }
         }
@@ -156,7 +171,7 @@ namespace FarthorlPacMan
 
                     if (elements[4] == "1")
                     {
-                        eatPoints += int.Parse(elements[4]);
+                        eatPoints = eatPoints + int.Parse(elements[4]);
                         elements[4] = "0";
                     }
 
@@ -164,12 +179,17 @@ namespace FarthorlPacMan
                     this.positionQuadrantX = nextQuandrantX;
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Down";
+                    movedDirection = "Down";
                     engine.updateMatrihElements(this.positionQuadrantX, this.positionQuadrantY, elements);
 
                 }
                 else if (elements[0] == "1" && positionQuadrantX < engine.GetMaxY() - 1)
                 {
-                    movedDirection="";
+                    if (movedDirection == "")
+                    {
+                        previousDirection = "";
+                    }
+                    movedDirection ="";
                     this.move(graphic, engine, previousDirection);
                 }
             }
@@ -249,13 +269,16 @@ namespace FarthorlPacMan
           
                 if (elements[4] == "1")
                 {
-                    eatPoints += int.Parse(elements[4]);
+                    eatPoints = eatPoints+int.Parse(elements[4]);
                     elements[4] = "0";
-
                 }
                 this.drawPacMan(graphics);
                 engine.updateMatrihElements(this.positionQuadrantX, this.positionQuadrantY, elements);
+        }
 
+        public int getScore()
+        {
+            return this.eatPoints;
         }
 
     }
