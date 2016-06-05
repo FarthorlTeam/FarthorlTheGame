@@ -42,15 +42,15 @@ namespace FarthorlPacMan
             drawPaths();
             PacMan pacMan=new PacMan(0,0,this.graphics,this);
 
+            //Draw the points
+            foreach (var point in points)
+            {
+                point.drawPoint(graphics);
+            }
+
             while (true)
             {
-                //Redraw the points
-                foreach (var point in points)
-                {
-                    point.drawPoint(graphics);
-                }
 
-                System.Threading.Thread.Sleep(100);
                 pacMan.move(this.graphics,this, moveDirection);
 
             }

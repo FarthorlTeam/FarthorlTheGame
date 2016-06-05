@@ -37,8 +37,7 @@
             if (e.KeyValue==37)
             {
                 game.Direction("Left");
-            }
-            
+            }       
         }
     }
 }
