@@ -94,8 +94,8 @@
         #endregion
 
         private System.Windows.Forms.Panel pacMan;
-        private System.Windows.Forms.Label ScoreLabel;
-        private System.Windows.Forms.Label LeftScore;
+        public System.Windows.Forms.Label ScoreLabel;
+        public System.Windows.Forms.Label LeftScore;
     }
 }
 

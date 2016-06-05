@@ -51,6 +51,7 @@
 
         public void updateScore(int score)
         {
+
             ScoreLabel.Text = $"Scores: {score}";
         }
 

@@ -183,7 +183,7 @@ namespace FarthorlPacMan
                     engine.updateMatrihElements(this.positionQuadrantX, this.positionQuadrantY, elements);
 
                 }
-                else if (elements[0] == "1" && positionQuadrantX < engine.GetMaxY() - 1)
+                else if (elements[0] == "1" && positionQuadrantY < engine.GetMaxY())
                 {
                     if (movedDirection == "")
                     {
