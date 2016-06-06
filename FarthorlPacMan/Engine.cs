@@ -1,12 +1,11 @@
-﻿using System.Windows.Forms;
-
-namespace FarthorlPacMan
+﻿namespace FarthorlPacMan
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Threading;
     using System.Drawing;
+    using System.Windows.Forms;
 
     public class Engine
     {

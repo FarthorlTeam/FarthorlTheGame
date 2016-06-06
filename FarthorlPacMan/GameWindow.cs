@@ -1,6 +1,4 @@
-﻿using System.Threading;
-
-namespace FarthorlPacMan
+﻿namespace FarthorlPacMan
 {
     using System.Drawing;
     using System.Windows.Forms;

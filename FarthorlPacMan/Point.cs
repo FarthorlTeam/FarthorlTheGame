@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace FarthorlPacMan
+﻿namespace FarthorlPacMan
 {
+    using System;
     using System.Drawing;
     class Point
     {

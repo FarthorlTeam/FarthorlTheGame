@@ -68,7 +68,7 @@
             this.pacMan.TabIndex = 0;
             this.pacMan.Paint += new System.Windows.Forms.PaintEventHandler(this.pacMan_Paint);
             // 
-            // GameWindows
+            // GameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -80,7 +80,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1217, 900);
             this.MinimumSize = new System.Drawing.Size(1217, 900);
-            this.Name = "GameWindows";
+            this.Name = "GameWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Farthorl PacMan Game";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GameWindows_FormClosed);

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Drawing;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FarthorlPacMan
+﻿namespace FarthorlPacMan
 {
+    using System;
+    using System.Drawing;
+    using System.Threading.Tasks;
+
     class PacMan
     {
         private Boolean isAlive = true;
