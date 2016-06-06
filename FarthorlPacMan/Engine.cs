@@ -30,7 +30,6 @@
         public void Initialize()
         {
             threadRendering = new Thread(new ThreadStart(render));
-            threadMonsters=new Thread(new ThreadStart(monstersRender));
             initializeMatrix();
             DrawFontColor();
             drawPaths();
@@ -60,7 +59,6 @@
 
             while (run)
             {
-
                 pacMan.move(this.graphics,this, moveDirection);
 
                 game.UpdateScores(pacMan.getScore());

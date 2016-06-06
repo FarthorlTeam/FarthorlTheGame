@@ -110,7 +110,6 @@
                     previousDirection = "Right";
                     movedDirection = "Right";
                     engine.EatPointAdnUpdateMatrix(this.positionQuadrantX, this.positionQuadrantY, elements);
-
                 }
                 else if (elements[3] == "1" && positionQuadrantX < engine.GetMaxX() - 1)
                 {
