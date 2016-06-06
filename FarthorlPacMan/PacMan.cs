@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FarthorlPacMan
@@ -47,7 +48,7 @@ namespace FarthorlPacMan
             }
         }
 
-        private void tryMoveUp(Graphics graphic, Engine engine)
+        private async void tryMoveUp(Graphics graphic, Engine engine)
         {
             if (positionQuadrantY > 0)
             {
@@ -65,7 +66,7 @@ namespace FarthorlPacMan
                         elements[4] = "0";
                     }
 
-                    this.movePacMan(graphic, nextQuandrantX, nextQuadrantY, "Up");
+                    await this.movePacMan(graphic, nextQuandrantX, nextQuadrantY, "Up");
                     this.positionQuadrantX = nextQuandrantX;
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Up";
@@ -85,10 +86,10 @@ namespace FarthorlPacMan
             }
         }
 
-        private void tryMoveRight(Graphics graphic, Engine engine)
+        private async void tryMoveRight(Graphics graphic, Engine engine)
         {
 
-            if (positionQuadrantX < engine.GetMaxX() - 1)
+            if (this.positionQuadrantX < engine.GetMaxX() - 1)
             {
                 int nextQuandrantX = this.positionQuadrantX + 1;
                 int nextQuadrantY = this.positionQuadrantY;
@@ -99,12 +100,12 @@ namespace FarthorlPacMan
 
                     if (elements[4] == "1")
                     {
-                        eatPoints = eatPoints + int.Parse(elements[4]);
+                        this.eatPoints = this.eatPoints + int.Parse(elements[4]);
                         elements[4] = "0";
 
                     }
 
-                    this.movePacMan(graphic, nextQuandrantX, nextQuadrantY, "Right");
+                    await movePacMan(graphic, nextQuandrantX, nextQuadrantY, "Right");
                     this.positionQuadrantX = nextQuandrantX;
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Right";
@@ -124,7 +125,7 @@ namespace FarthorlPacMan
             }
         }
 
-        private void tryMoveDown(Graphics graphic, Engine engine)
+        private async void tryMoveDown(Graphics graphic, Engine engine)
         {
             if (positionQuadrantY < engine.GetMaxY() - 1)
             {
@@ -140,7 +141,7 @@ namespace FarthorlPacMan
                         elements[4] = "0";
                     }
 
-                    this.movePacMan(graphic, nextQuandrantX, nextQuadrantY, "Down");
+                    await this.movePacMan(graphic, nextQuandrantX, nextQuadrantY, "Down");
                     this.positionQuadrantX = nextQuandrantX;
                     this.positionQuadrantY = nextQuadrantY;
                     this.previousDirection = "Down";
@@ -160,7 +161,7 @@ namespace FarthorlPacMan
             }
         }
 
-        private void tryMoveLeft(Graphics graphic, Engine engine)
+        private async void tryMoveLeft(Graphics graphic, Engine engine)
         {
 
             if (positionQuadrantX > 0)
@@ -179,7 +180,7 @@ namespace FarthorlPacMan
                         elements[4] = "0";
                     }
 
-                    this.movePacMan(graphic, nextQuandrantX, nextQuadrantY, "Left");
+                    await this.movePacMan(graphic, nextQuandrantX, nextQuadrantY, "Left");
                     this.positionQuadrantX = nextQuandrantX;
                     this.positionQuadrantY = nextQuadrantY;
                     previousDirection = "Left";
@@ -210,7 +211,7 @@ namespace FarthorlPacMan
                 );
         }
 
-         public void movePacMan(Graphics graphics, int nextX, int nextY, string moving)
+        private async Task<bool> movePacMan(Graphics graphics, int nextX, int nextY, string moving)
         {
             graphics.FillRectangle(
                 new SolidBrush(Color.Black),
@@ -329,6 +330,7 @@ namespace FarthorlPacMan
                     }
                     break;
             }
+            return true;
         }
 
         private void initializePacMan(Graphics graphics, Engine engine)

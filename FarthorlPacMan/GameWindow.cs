@@ -4,10 +4,10 @@ namespace FarthorlPacMan
 {
     using System.Drawing;
     using System.Windows.Forms;
-    public partial class GameWindows : Form
+    public partial class GameWindow : Form
     {
         private Game game=new Game();
-        public GameWindows()
+        public GameWindow()
         {
             InitializeComponent();
         }

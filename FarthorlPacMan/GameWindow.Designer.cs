@@ -1,6 +1,6 @@
 ﻿namespace FarthorlPacMan
 {
-    partial class GameWindows
+    partial class GameWindow
     {
         /// <summary>
         /// Required designer variable.

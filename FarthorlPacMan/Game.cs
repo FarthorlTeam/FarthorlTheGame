@@ -5,7 +5,7 @@
     class Game
     {
         private Engine graphicEngine;
-        public void startDraw(Graphics graphic, GameWindows game)
+        public void startDraw(Graphics graphic, GameWindow game)
         {
             this.graphicEngine = new Engine(graphic, game);
             this.graphicEngine.Initialize();

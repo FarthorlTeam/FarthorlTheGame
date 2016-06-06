@@ -16,7 +16,7 @@ namespace FarthorlPacMan
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GameWindows());
+            Application.Run(new GameWindow());
         }
     }
 }

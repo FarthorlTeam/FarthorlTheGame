@@ -12,6 +12,7 @@ namespace FarthorlPacMan
     {
         private Graphics graphics;
         private Thread threadRendering;
+        private Thread threadMonsters;
         private string[,] pathsMatrix=new string[24,16];
         private int xMax = 24;
         private int yMax = 16;
@@ -19,9 +20,9 @@ namespace FarthorlPacMan
         private bool run = true;
         private string moveDirection;
         private Color wallColor=Color.Cyan;
-        private readonly GameWindows game;
+        private readonly GameWindow game;
         List<Point> points=new List<Point>();
-        public Engine(Graphics graphic, GameWindows game)
+        public Engine(Graphics graphic, GameWindow game)
         {
             this.graphics = graphic;
             this.game = game;
@@ -30,6 +31,7 @@ namespace FarthorlPacMan
         public void Initialize()
         {
             threadRendering = new Thread(new ThreadStart(render));
+            threadMonsters=new Thread(new ThreadStart(monstersRender));
             initializeMatrix();
             DrawFontColor();
             drawPaths();
@@ -45,7 +47,6 @@ namespace FarthorlPacMan
         public void stopGame()
         {
             threadRendering.Abort();
-            run = false;
         }
 
         public void pauseGame()
@@ -57,21 +58,22 @@ namespace FarthorlPacMan
         private void render()
         {
             PacMan pacMan = new PacMan(0, 0, this.graphics, this);
-            Label scoreLabel=new Label();
-            scoreLabel.Width=250;
-            scoreLabel.Height = 50;
-            scoreLabel.Left = 3;
-            scoreLabel.Top = 802;
-            scoreLabel.BringToFront();
+
             while (run)
             {
 
                 pacMan.move(this.graphics,this, moveDirection);
 
                 game.UpdateScores(pacMan.getScore());
+
                 UpdateLeftSores(pacMan.getScore());
 
             }
+        }
+
+        private void monstersRender()
+        {
+            MessageBox.Show("dasd");
         }
 
         private void initializeMatrix()
